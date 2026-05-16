@@ -1,10 +1,10 @@
 /**
  * @package     @pq-jwt/core
  * @author      Sachin Ruhil <sachinruhil11@gmail.com>
- * @version     1.0.5
+ * @version     1.0.6
  * @license     MIT
  * @description Post-quantum JWT library — NIST FIPS 204 (ML-DSA) + FIPS 205 (SLH-DSA)
- * @copyright   2025 Sachin Ruhil. All rights reserved.
+ * @copyright   2026 Sachin Ruhil. All rights reserved.
  * @see         https://github.com/pq-jwt/PQ-JWT
  */
 

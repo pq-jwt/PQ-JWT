@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.6 — 2026-05-16
+
+### Added
+
+- `notBefore` option on `sign()` — sets `nbf` via `parseDuration()` (same format as `expiresIn`)
+- `clockTolerance` option on `verify()` — seconds of allowed clock skew for `exp` and `nbf` (default `0`)
+
 ## 1.0.5 — 2026-05-16
 
 ### Fixed
