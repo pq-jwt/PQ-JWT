@@ -6,6 +6,18 @@ A comprehensive, production-ready JavaScript/Node.js library for generating, man
 
 This library provides quantum-resistant JWT authentication using pure Javascript implementations of NIST-standardized algorithms via the highly audited `@noble/post-quantum` package.
 
+## Ecosystem
+
+| Package                                                   | Description                                  |
+| --------------------------------------------------------- | -------------------------------------------- |
+| [`@pq-jwt/core`](https://npmjs.com/package/@pq-jwt/core)  | This library — sign, verify, ML-DSA, SLH-DSA |
+| [`PQ-JWT-Demo`](https://github.com/ruhil6789/PQ-JWT-Demo) | Full demo — Express, MongoDB, TypeScript, UI |
+
+## Author
+
+**Sachin Ruhil** · [github.com/ruhil6789](https://github.com/ruhil6789)  
+npm: [npmjs.com/~ruhil6789](https://www.npmjs.com/~ruhil6789)
+
 ---
 
 ## Features
