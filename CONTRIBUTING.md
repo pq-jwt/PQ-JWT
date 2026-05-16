@@ -13,7 +13,7 @@ accessible to every developer.
 ## Setup
 
 ```bash
-git clone https://github.com/ruhil6789/PQ-JWT
+git clone https://github.com/pq-jwt/PQ-JWT
 cd PQ-JWT
 npm install
 node test/test.mjs   # must show 35/35 passing

@@ -1,6 +1,9 @@
-# PQ-JWT - Post-Quantum JWT Node.js Library
+# PQ-JWT - Universal Post-Quantum JWT Library
 
-[![CI](https://github.com/ruhil6789/pq-jwt/actions/workflows/ci.yml/badge.svg)](https://github.com/ruhil6789/pq-jwt/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@pq-jwt/core?color=blue)](https://npmjs.com/package/@pq-jwt/core)
+[![CI](https://github.com/pq-jwt/PQ-JWT/actions/workflows/ci.yml/badge.svg)](https://github.com/pq-jwt/PQ-JWT/actions)
+[![npm downloads](https://img.shields.io/npm/dm/@pq-jwt/core)](https://npmjs.com/package/@pq-jwt/core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A comprehensive, production-ready JavaScript/Node.js library for generating, managing, signing, and verifying **Post-Quantum Cryptography (PQC) JSON Web Tokens (JWTs)**. It acts as a drop-in successor to broken RS256/ES256 libraries.
 
@@ -11,7 +14,7 @@ This library provides quantum-resistant JWT authentication using pure Javascript
 | Package                                                   | Description                                  |
 | --------------------------------------------------------- | -------------------------------------------- |
 | [`@pq-jwt/core`](https://npmjs.com/package/@pq-jwt/core)  | This library — sign, verify, ML-DSA, SLH-DSA |
-| [`PQ-JWT-Demo`](https://github.com/ruhil6789/PQ-JWT-Demo) | Full demo — Express, MongoDB, TypeScript, UI |
+| [`PQ-JWT-Demo`](https://github.com/pq-jwt/PQ-JWT-Demo) | Full demo — Express, MongoDB, TypeScript, UI |
 
 ## Author
 

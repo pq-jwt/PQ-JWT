@@ -5,7 +5,7 @@
  * @license     MIT
  * @description Post-quantum JWT library — NIST FIPS 204 (ML-DSA) + FIPS 205 (SLH-DSA)
  * @copyright   2025 Sachin Ruhil. All rights reserved.
- * @see         https://github.com/ruhil6789/PQ-JWT
+ * @see         https://github.com/pq-jwt/PQ-JWT
  */
 
 export type Algorithm = 'ML-DSA-44' | 'ML-DSA-65' | 'ML-DSA-87' | 'SLH-DSA-SHA2-128s';
