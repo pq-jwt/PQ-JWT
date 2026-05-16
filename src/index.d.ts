@@ -1,3 +1,13 @@
+/**
+ * @package     @pq-jwt/core
+ * @author      Sachin Ruhil <sachinruhil11@gmail.com>
+ * @version     1.0.2
+ * @license     MIT
+ * @description Post-quantum JWT library — NIST FIPS 204 (ML-DSA) + FIPS 205 (SLH-DSA)
+ * @copyright   2025 Sachin Ruhil. All rights reserved.
+ * @see         https://github.com/ruhil6789/PQ-JWT
+ */
+
 export type Algorithm = 'ML-DSA-44' | 'ML-DSA-65' | 'ML-DSA-87' | 'SLH-DSA-SHA2-128s';
 
 export const SUPPORTED_ALGORITHMS: Algorithm[];

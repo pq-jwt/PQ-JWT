@@ -1,6 +1,6 @@
 {
   "name": "@pq-jwt/core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Post-quantum JWT library using NIST-standardized ML-DSA and SLH-DSA. Drop-in successor to RS256/ES256.",
   "type": "module",
   "main": "./src/index.mjs",
@@ -25,7 +25,11 @@
     "fips-204",
     "cryptography"
   ],
-  "author": "Sachin Ruhil",
+  "author": {
+    "name": "Sachin Ruhil",
+    "email": "sachinruhil11@gmail.com",
+    "url": "https://github.com/ruhil6789"
+  },
   "license": "MIT",
   "dependencies": {
     "@noble/hashes": "^1.7.2",
