@@ -25,7 +25,7 @@ npm: [npmjs.com/~ruhil6789](https://www.npmjs.com/~ruhil6789)
 
 ## Features
 
-- **Zero Native Dependencies**: Uses pure JS math, running seamlessly in Node.js >= 16 without complex C++ bindings.
+- **Zero Native Dependencies**: Uses pure JS math, running seamlessly in Node.js >= 20.19 without complex C++ bindings.
 - **Post-Quantum Ready**: Implements NIST-standardized ML-DSA (Dilithium) and SLH‑DSA (SPHINCS+) signature algorithms.
 - **Familiar API**: Syntax identical to classic JWT libraries (`sign()`, `verify()`, `decode()`, `refresh()`).
 - **Standard JWT Claims**: Automatic validation of `exp` (with duration strings like `'1h'`), `nbf`, `iss`, `sub`, and `aud`.
@@ -37,7 +37,7 @@ npm: [npmjs.com/~ruhil6789](https://www.npmjs.com/~ruhil6789)
 
 ## Requirements
 
-- Node.js 16.0.0 or higher
+- Node.js 20.19.0 or higher
 
 ---
 
