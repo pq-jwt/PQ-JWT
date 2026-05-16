@@ -106,20 +106,49 @@ _Note: SPHINCS+ produces much larger signatures and is slower to compute, but re
 
 ---
 
-## Key Management
+## Key Management & Environment Variables (.env)
 
-You can easily export your `Uint8Array` keys into hexadecimal strings for database storage or environment variables, and import them back:
+One of the biggest confusions for developers switching to Post-Quantum JWTs is how to handle the massive keys. Classic JWTs (like `HS256`) use a simple text password (e.g., `JWT_SECRET="my-super-secret"`) that you can easily put in your `.env` file.
+
+Because ML-DSA and SLH-DSA use **asymmetric cryptography**, their keys are massive, mathematically-linked byte arrays (often 4KB+). You **cannot** generate these keys dynamically every time your server starts, or all previously issued tokens will instantly become invalid.
+
+**You handle this by generating the keys ONCE, converting them to hex, and placing them in your `.env` file!**
+
+### Step 1: One-Time Setup Script
+
+Run this script locally on your machine just once to generate your public and private keys, and encode them into pure strings using `exportKey`.
 
 ```javascript
-import { exportKey, importKey } from "@pq-jwt/core";
+// one-time-setup.mjs
+import { generateKeyPair, exportKey } from "@pq-jwt/core";
 
-// Export keys to string
-const publicHex = exportKey(publicKey);
-const privateHex = exportKey(secretKey);
+// Generate keys once
+const { publicKey, secretKey } = generateKeyPair("ML-DSA-65");
 
-// Import keys back to Uint8Array
-const loadedPublicKey = importKey(publicHex);
+// Convert huge byte arrays to safe hexadecimal strings
+console.log("--- ADD THESE TO YOUR .env FILE ---");
+console.log(`PQ_PRIVATE_KEY="${exportKey(secretKey)}"`);
+console.log(`PQ_PUBLIC_KEY="${exportKey(publicKey)}"`);
 ```
+
+### Step 2: Production Server
+
+In your production app (like Express or Next.js), you simply read those strings from your `.env` file and convert them back into crypto-ready keys using `importKey`. This makes your workflow absolutely identical to classic JWTs!
+
+```javascript
+// server.mjs
+import { importKey, sign, verify } from "@pq-jwt/core";
+
+// 1. Load keys securely from Environment Variables!
+const secretKey = importKey(process.env.PQ_PRIVATE_KEY);
+const publicKey = importKey(process.env.PQ_PUBLIC_KEY);
+
+// 2. Sign and Verify normally!
+const token = sign({ userId: 123 }, secretKey, { expiresIn: "1h" });
+const payload = verify(token, publicKey);
+```
+
+This pattern perfectly separates your key generation from your application lifecycle, ensuring your server remains stateless and infinitely scalable.
 
 ---
 
