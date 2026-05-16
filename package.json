@@ -1,13 +1,12 @@
 {
   "name": "@pq-jwt/core",
-  "version": "1.1.0",
+  "version": "1.0.3",
   "description": "Post-quantum JWT library using NIST-standardized ML-DSA and SLH-DSA. Drop-in successor to RS256/ES256.",
   "type": "module",
   "main": "./src/index.mjs",
   "module": "./src/index.mjs",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
       "import": "./src/index.mjs",
       "default": "./src/index.mjs"
     }
@@ -37,8 +36,7 @@
     "@noble/post-quantum": "^0.6.1"
   },
   "files": [
-    "src/index.mjs",
-    "src/index.d.ts",
+    "src/",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"

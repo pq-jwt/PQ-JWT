@@ -1,7 +1,7 @@
 /**
  * @package     @pq-jwt/core
  * @author      Sachin Ruhil <sachinruhil11@gmail.com>
- * @version     1.1.0
+ * @version     1.0.2
  * @license     MIT
  * @description Post-quantum JWT library — NIST FIPS 204 (ML-DSA) + FIPS 205 (SLH-DSA)
  * @copyright   2025 Sachin Ruhil. All rights reserved.
@@ -192,7 +192,7 @@ export function verify(token, publicKey, options = {}) {
   let header;
   try {
     header = decodeJSON(headerEncoded);
-  } catch (_err) {
+  } catch {
     throw new InvalidTokenError("header is not valid base64url JSON");
   }
 
@@ -224,7 +224,7 @@ export function verify(token, publicKey, options = {}) {
   let payload;
   try {
     payload = decodeJSON(payloadEncoded);
-  } catch (_err) {
+  } catch {
     throw new InvalidTokenError("payload is not valid base64url JSON");
   }
 
@@ -235,7 +235,7 @@ export function verify(token, publicKey, options = {}) {
   let valid;
   try {
     valid = alg.impl.verify(signature, digest, pk);
-  } catch (_err) {
+  } catch {
     valid = false;
   }
   if (!valid) throw new SignatureError();

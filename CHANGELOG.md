@@ -1,12 +1,5 @@
 # Changelog
 
-## 1.1.0 — 2026-05-16
-
-### Fixed
-
-- Add `types` condition to `package.json` `exports` for TypeScript 5+ / NodeNext resolution
-- Explicitly include `src/index.d.ts` in published package files
-
 ## 1.0.0 — 2025-05-16
 
 ### Initial Release
