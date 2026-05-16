@@ -86,7 +86,9 @@ try {
   console.log("JWT is valid!");
   console.log("Payload:", decoded.payload);
 } catch (error) {
-  console.log("Verification failed:", error.message);
+  if (error instanceof Error) {
+    console.log("Verification failed:", error.message);
+  }
 }
 ```
 
@@ -181,7 +183,7 @@ import { TokenExpiredError, SignatureError, verify } from "@pq-jwt/core";
 
 try {
   verify(token, publicKey);
-} catch (error) {
+} catch (error: unknown) {
   if (error instanceof TokenExpiredError) {
     console.log(`Token expired cleanly at ${error.expiredAt}`);
   } else if (error instanceof SignatureError) {
