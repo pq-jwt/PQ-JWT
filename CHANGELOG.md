@@ -1,11 +1,15 @@
 # Changelog
 
-## 1.1.1 — 2026-05-16
+## 1.0.4 — 2026-05-16
 
 ### Fixed
 
 - Add `types` to `package.json` `exports` for TypeScript 5+ (`NodeNext` / `Bundler` resolution)
 - Ship `src/index.d.ts` explicitly in the npm package
+
+## 1.0.3 — 2026-05-16
+
+- Published under `@pq-jwt/core` org scope
 
 ## 1.0.0 — 2025-05-16
 
