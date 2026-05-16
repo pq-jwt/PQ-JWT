@@ -1,5 +1,5 @@
 {
-  "name": "@ruhil6789/pq-jwt",
+  "name": "@pq-jwt/core",
   "version": "1.0.0",
   "description": "Post-quantum JWT library using NIST-standardized ML-DSA and SLH-DSA. Drop-in successor to RS256/ES256.",
   "type": "module",
