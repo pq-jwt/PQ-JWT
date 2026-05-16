@@ -1,7 +1,7 @@
 /**
  * @package     @pq-jwt/core
  * @author      Sachin Ruhil <sachinruhil11@gmail.com>
- * @version     1.0.4
+ * @version     1.0.5
  * @license     MIT
  * @description Post-quantum JWT library — NIST FIPS 204 (ML-DSA) + FIPS 205 (SLH-DSA)
  * @copyright   2025 Sachin Ruhil. All rights reserved.
@@ -25,14 +25,14 @@ const ALGORITHMS = {
     desc: "NIST FIPS 204, lattice-based, security level 3 (192-bit quantum)",
     pkLen: 1952,
     skLen: 4032,
-    sigLen: 3293,
+    sigLen: 3309,
   },
   "ML-DSA-87": {
     impl: ml_dsa87,
     desc: "NIST FIPS 204, lattice-based, security level 5 (256-bit quantum)",
     pkLen: 2592,
     skLen: 4896,
-    sigLen: 4595,
+    sigLen: 4627,
   },
   "SLH-DSA-SHA2-128s": {
     impl: slh_dsa_sha2_128s,

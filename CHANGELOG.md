@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5 — 2026-05-16
+
+### Fixed
+
+- Correct `algorithmInfo()` signature sizes for ML-DSA-65 (3309) and ML-DSA-87 (4627) to match `@noble/post-quantum`
+
 ## 1.0.4 — 2026-05-16
 
 ### Fixed

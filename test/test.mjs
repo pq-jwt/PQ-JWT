@@ -33,7 +33,27 @@ async function runTests() {
     });
   }
 
-  // 5
+  // 5-8: Signature sizes match @noble/post-quantum
+  const EXPECTED_SIG = {
+    'ML-DSA-44': 2420,
+    'ML-DSA-65': 3309,
+    'ML-DSA-87': 4627,
+    'SLH-DSA-SHA2-128s': 7856,
+  };
+  for (const alg of SUPPORTED_ALGORITHMS) {
+    await test(`${alg} algorithmInfo signatureBytes`, () => {
+      assert.strictEqual(algorithmInfo(alg).signatureBytes, EXPECTED_SIG[alg]);
+    });
+    await test(`${alg} actual signature length (5 samples)`, () => {
+      for (let i = 0; i < 5; i++) {
+        const token = sign({ sample: i }, keys[alg].secretKey, { algorithm: alg });
+        const { signature } = decode(token);
+        assert.strictEqual(signature.length, EXPECTED_SIG[alg]);
+      }
+    });
+  }
+
+  // 9
   await test('exportKey/importKey round-trip', () => {
     const exported = exportKey(keys['ML-DSA-65'].publicKey);
     const imported = importKey(exported);
