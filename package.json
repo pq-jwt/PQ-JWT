@@ -1,0 +1,52 @@
+{
+  "name": "pq-jwt",
+  "version": "1.0.0",
+  "description": "Post-quantum JWT library using NIST-standardized ML-DSA and SLH-DSA. Drop-in successor to RS256/ES256.",
+  "type": "module",
+  "main": "./src/index.mjs",
+  "module": "./src/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs",
+      "default": "./src/index.mjs"
+    }
+  },
+  "keywords": [
+    "jwt",
+    "post-quantum",
+    "ml-dsa",
+    "dilithium",
+    "sphincs",
+    "slh-dsa",
+    "authentication",
+    "token",
+    "pqc",
+    "nist",
+    "fips-204",
+    "cryptography"
+  ],
+  "author": "Sachin Ruhil",
+  "license": "MIT",
+  "dependencies": {
+    "@noble/hashes": "^1.7.2",
+    "@noble/post-quantum": "^0.6.1"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "types": "./src/index.d.ts",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruhil6789/pq-jwt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ruhil6789/pq-jwt/issues"
+  },
+  "homepage": "https://github.com/ruhil6789/pq-jwt#readme"
+}

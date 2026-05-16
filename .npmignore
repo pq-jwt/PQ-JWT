@@ -1,0 +1,6 @@
+test/
+proof.mjs
+whitepaper.js
+*.docx
+.github/
+examples/
