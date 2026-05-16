@@ -21,6 +21,7 @@ export interface KeyPair {
 export interface SignOptions {
   algorithm?: Algorithm;
   expiresIn?: number | string;
+  notBefore?: number | string;
   issuer?: string;
   subject?: string;
   audience?: string;
@@ -33,6 +34,7 @@ export interface VerifyOptions {
   audience?: string;
   subject?: string;
   ignoreExpiry?: boolean;
+  clockTolerance?: number;
 }
 
 export interface DecodedToken {

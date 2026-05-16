@@ -130,6 +130,29 @@ async function runTests() {
     assert.throws(() => verify(token, keys['ML-DSA-65'].publicKey), (err) => err.code === 'TOKEN_NOT_YET_VALID');
   });
 
+  await test('notBefore option sets nbf and blocks verify until valid', () => {
+    const token = sign({ sub: 'u1' }, keys['ML-DSA-65'].secretKey, { notBefore: '1h' });
+    const { payload } = decode(token);
+    const now = Math.floor(Date.now() / 1000);
+    assert.ok(payload.nbf >= now + 3599);
+    assert.throws(() => verify(token, keys['ML-DSA-65'].publicKey), (err) => err.code === 'TOKEN_NOT_YET_VALID');
+  });
+
+  await test('clockTolerance accepts slightly expired token', () => {
+    const token = sign(
+      { x: 1, exp: Math.floor(Date.now() / 1000) - 10 },
+      keys['ML-DSA-65'].secretKey,
+    );
+    assert.throws(() => verify(token, keys['ML-DSA-65'].publicKey), TokenExpiredError);
+    assert.doesNotThrow(() => verify(token, keys['ML-DSA-65'].publicKey, { clockTolerance: 15 }));
+  });
+
+  await test('clockTolerance accepts token before nbf within skew window', () => {
+    const token = sign({ x: 1 }, keys['ML-DSA-65'].secretKey, { notBefore: '8s' });
+    assert.throws(() => verify(token, keys['ML-DSA-65'].publicKey), (err) => err.code === 'TOKEN_NOT_YET_VALID');
+    assert.doesNotThrow(() => verify(token, keys['ML-DSA-65'].publicKey, { clockTolerance: 10 }));
+  });
+
   // 15-19: Duration strings
   const durations = ['60s', '5m', '2h', '1d', '1w'];
   for (const d of durations) {

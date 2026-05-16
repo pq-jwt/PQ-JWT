@@ -4,7 +4,7 @@
  * @version     1.0.5
  * @license     MIT
  * @description Post-quantum JWT library — NIST FIPS 204 (ML-DSA) + FIPS 205 (SLH-DSA)
- * @copyright   2025 Sachin Ruhil. All rights reserved.
+ * @copyright   2026 Sachin Ruhil. All rights reserved.
  * @see         https://github.com/pq-jwt/PQ-JWT
  */
 
@@ -168,6 +168,8 @@ export function sign(payload, secretKey, options = {}) {
   if (options.subject) claims.sub = options.subject;
   if (options.audience) claims.aud = options.audience;
   if (options.jwtId) claims.jti = options.jwtId;
+  if (options.notBefore !== undefined)
+    claims.nbf = now + parseDuration(options.notBefore);
 
   const headerEncoded = encodeJSON(header);
   const payloadEncoded = encodeJSON(claims);
@@ -242,14 +244,20 @@ export function verify(token, publicKey, options = {}) {
 
   const now = Math.floor(Date.now() / 1000);
 
-  if (!options.ignoreExpiry && payload.exp !== undefined)
-    if (now > payload.exp) throw new TokenExpiredError(payload.exp);
+  if (!options.ignoreExpiry && payload.exp !== undefined) {
+    const tolerance = options.clockTolerance ?? 0;
+    if (now > payload.exp + tolerance)
+      throw new TokenExpiredError(payload.exp);
+  }
 
-  if (payload.nbf !== undefined && now < payload.nbf)
-    throw new PQJWTError(
-      `Token not valid before ${new Date(payload.nbf * 1000).toISOString()}`,
-      "TOKEN_NOT_YET_VALID",
-    );
+  if (payload.nbf !== undefined) {
+    const tolerance = options.clockTolerance ?? 0;
+    if (now < payload.nbf - tolerance)
+      throw new PQJWTError(
+        `Token not valid before ${new Date(payload.nbf * 1000).toISOString()}`,
+        "TOKEN_NOT_YET_VALID",
+      );
+  }
 
   if (options.issuer && payload.iss !== options.issuer)
     throw new InvalidTokenError(
