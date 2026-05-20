@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write  # ⬅️ ADDED: Required for OIDC trusted publishing
 
 jobs:
   test:
@@ -40,18 +41,26 @@ jobs:
     needs: [test, ecosystem]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
+    
+    # ⬅️ ADDED: Explicit permissions for publish job
+    permissions:
+      contents: read
+      id-token: write  # Required for OIDC
+    
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
+          package-manager-cache: false  # ⬅️ ADDED: Never cache in release builds
+      
       - run: npm install
-      - name: Verify npm authentication
-        run: npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      # ⬅️ REMOVED: npm whoami step (not needed with OIDC)
+      
+      # ⬅️ UPDATED: No NODE_AUTH_TOKEN needed!
       - name: Publish to npm
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # env block REMOVED - OIDC handles authentication
