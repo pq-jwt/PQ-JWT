@@ -58,9 +58,14 @@ jobs:
       
       - run: npm install
       
-      # ⬅️ REMOVED: npm whoami step (not needed with OIDC)
-      
-      # ⬅️ UPDATED: No NODE_AUTH_TOKEN needed!
+      - name: Verify npm auth
+        run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # OIDC: configure Trusted Publisher on npm for @pq-jwt/core (pq-jwt/PQ-JWT, ci.yml).
+      # Until then, org secret NPM_TOKEN is used. Remove NODE_AUTH_TOKEN after OIDC works.
       - name: Publish to npm
-        run: npm publish --access public
-        # env block REMOVED - OIDC handles authentication
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
